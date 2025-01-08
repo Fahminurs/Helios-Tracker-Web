@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 06 Jan 2025 pada 15.31
+-- Waktu pembuatan: 08 Jan 2025 pada 09.22
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -43,15 +43,13 @@ CREATE TABLE `alat` (
 --
 
 INSERT INTO `alat` (`id_alat`, `id_user`, `kode_perangkat`, `status_servo`, `status_esp32`, `cuaca`, `suhu`, `lokasi_perangkat`) VALUES
-(6, 2, '12345', 'Hidup', 'Hidup', 'Sebagian Berawan', '18.2', '{\"Latitude\":-6.991865,\"Longitude\":107.5576583}'),
+(6, 2, '12345', 'Mati', 'Hidup', 'Sebagian Berawan', '18.2', '{\"Latitude\":-6.991865,\"Longitude\":107.5576583}'),
 (10, 1, '3434343413', NULL, NULL, 'Partly Cloudy', '21.3', '{\"Latitude\": -6.936199031805925, \"Longitude\": 107.72469741177119}'),
 (21, 2, '12345678', NULL, NULL, 'Tidak Diketahui', '23.5', '{\"Latitude\":-6.991865,\"Longitude\":107.5576583}'),
-(22, 2, '87654321', NULL, NULL, 'Sebagian Berawan', '19.8', '{\"Latitude\":-6.991865,\"Longitude\":107.5576583}'),
-(23, 2, '3432323', NULL, NULL, 'Sebagian Berawan', '19.8', '{\"Latitude\":-6.991865,\"Longitude\":107.5576583}'),
-(24, 2, '643545', NULL, NULL, 'Sebagian Berawan', '19.8', '{\"Latitude\":-6.991865,\"Longitude\":107.5576583}'),
-(25, 2, '3452342353', NULL, NULL, NULL, NULL, '{\"Latitude\":-6.991865,\"Longitude\":107.5576583}'),
-(26, 2, '532435234', NULL, NULL, 'Sebagian Berawan', '19.8', '{\"Latitude\":-6.991865,\"Longitude\":107.5576583}'),
-(27, 7, '12323', 'hidup', 'hidupsdfsd', 'koson', '20', '{\"Latitude\":-6.991865,\"Longitude\":107.5576583}');
+(22, 7, '87654321', NULL, NULL, 'Sebagian Berawan', '19.8', '\"{\\\"Latitude\\\":\\\"-6.930432\\\",\\\"Longitude\\\":\\\"107.593728\\\"}\"'),
+(23, 9, '3432323', 'dfd', 'dfdf', 'Sebagian Berawan', '19.8', '{\"Latitude\":-6.991865,\"Longitude\":107.5576583}'),
+(24, 7, '643545', 'qw', 'qw', 'Sebagian Berawan', '19.8', '{\"Latitude\":-6.991865,\"Longitude\":107.5576583}'),
+(25, 1, '3452342353', NULL, NULL, NULL, NULL, '{\"Latitude\":-6.991865,\"Longitude\":107.5576583}');
 
 -- --------------------------------------------------------
 
@@ -73,7 +71,9 @@ INSERT INTO `devices` (`id`, `kode_perangkat`, `status`) VALUES
 (1, '1', 'active'),
 (2, '3297', 'inactive'),
 (3, '4763', 'Tidak Aktif'),
-(4, '7048', 'Tidak Aktif');
+(4, '7048', 'Aktif'),
+(5, '37704', 'Tidak Aktif'),
+(6, '39666', 'Tidak Aktif');
 
 -- --------------------------------------------------------
 
@@ -97,11 +97,9 @@ INSERT INTO `monitoring_energi` (`id_energi`, `id_alat`, `ampere`, `volt`, `batt
 (3, 6, '0.30', '3.76', '84'),
 (15, 21, '1', '1', '1'),
 (16, 22, '0', '0', '0'),
-(17, 23, NULL, NULL, NULL),
+(17, 23, '0', '0', '0'),
 (18, 24, NULL, NULL, NULL),
-(19, 25, NULL, NULL, NULL),
-(20, 26, '0', '0', '0'),
-(21, 27, '0', '0', '0');
+(19, 25, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -126,9 +124,7 @@ INSERT INTO `monitor_solar` (`id_monitoring`, `id_alat`, `posisi_x`, `posisi_y`)
 (12, 22, '0', '0'),
 (13, 23, NULL, NULL),
 (14, 24, NULL, NULL),
-(15, 25, NULL, NULL),
-(16, 26, '0', '0'),
-(17, 27, '0', '0');
+(15, 25, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -210,25 +206,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `alat`
 --
 ALTER TABLE `alat`
-  MODIFY `id_alat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_alat` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT untuk tabel `devices`
 --
 ALTER TABLE `devices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `monitoring_energi`
 --
 ALTER TABLE `monitoring_energi`
-  MODIFY `id_energi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_energi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT untuk tabel `monitor_solar`
 --
 ALTER TABLE `monitor_solar`
-  MODIFY `id_monitoring` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_monitoring` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`

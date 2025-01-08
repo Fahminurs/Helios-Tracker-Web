@@ -6,7 +6,9 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UpdateAccountController;
-
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AdminProfileController;
+use App\Http\Controllers\loginadminController;
 
 // Login Routes
 Route::get('/', function() {
@@ -23,7 +25,8 @@ Route::middleware(['auth'])->group(function () {
     // User Routes
     Route::middleware(['role:user'])->group(function () {
         Route::get('/main', [DashboardController::class, 'index'])->name('main');
-
+        Route::get('/main/{kode_perangkat}', [DashboardController::class, 'showDeviceMain'])->name('main.device');
+        
         // Settings Routes
         Route::prefix('settings')->group(function () {
             Route::get('/', function () {
@@ -49,12 +52,13 @@ Route::middleware(['auth'])->group(function () {
                 ->name('change-password.update');
         });
 
-        Route::get('/device-list', [DashboardController::class, 'index'])->name('device-list');
-
+        Route::get('/device-list', [DashboardController::class, 'deviceList'])->name('device-list');
+        Route::get('/device-list/delete/{id}', [DashboardController::class, 'deleteDevice'])->name('device.delete');
+        
         Route::get('/Download', function () {
             return view('Download');
         });
-
+        
         Route::get('/Histori', function () {
             return view('histori');
         })->name('Histori');
@@ -62,13 +66,30 @@ Route::middleware(['auth'])->group(function () {
 
     // Admin Routes
     Route::middleware(['role:admin'])->group(function () {
-        Route::get('/dashboard', function () {
-            return view('admin.dashboard');
-        })->name('dashboard');
+        Route::get('/dashboard', [loginadminController::class, 'index'])->name('dashboard');
+        
+        // Profile Routes
+        Route::get('/profile', [AdminProfileController::class, 'edit'])->name('admin.profile.edit');
+        Route::put('/profile', [AdminProfileController::class, 'update'])->name('admin.profile.update');
     });
 
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/device-info', [DashboardController::class, 'getDeviceInfo'])->name('device.info');
+    // Route untuk generate device code
+    Route::post('/generate-device-code', [loginadminController::class, 'generateDeviceCode'])
+        ->middleware('auth');
+
+    // Profile Routes (accessible by all authenticated users)
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/update-profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::post('/update-profile', [ProfileController::class, 'update'])->name('profile.update');
+    });
+
+    // Device routes
+    Route::middleware(['auth', 'role:user'])->group(function () {
+        Route::post('/register-device', [DashboardController::class, 'registerDevice'])->name('device.register');
+    });
+
+    // Location update route
+    Route::post('/update-location', [DashboardController::class, 'updateLocation'])->name('update.location');
 });
 
 // Logout Route
@@ -82,3 +103,4 @@ Route::get('/show-alert', function () {
     return view('show-alert');
 })->name('show.alert');
 
+// Debug Route

@@ -29,17 +29,6 @@
             <span class="mt-1">Home</span>  
         </a>  
 
-        <!-- History -->
-        <a href="{{ route('Histori') }}" 
-           class="flex flex-col items-center text-black stroke-black nav-item {{ request()->routeIs('Histori') ? 'bg-black text-white stroke-white px-2 py-1 rounded-full' : '' }}" 
-           id="history-item">  
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon w-6 h-6">  
-                <path stroke="none" d="M0 0h24v24H0z" fill="none" />  
-                <path d="M12 8l0 4l2 2" />  
-                <path d="M3.05 11a9 9 0 1 1 .5 4m-.5 5v-5h5" />  
-            </svg>  
-            <span class="mt-1">History</span>  
-        </a>  
 
         <!-- Settings -->
         <a href="{{ route('settings') }}" 

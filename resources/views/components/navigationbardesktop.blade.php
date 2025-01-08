@@ -83,18 +83,7 @@
         </label>  
 
         <!-- History Icon -->  
-        <label class="nav-item relative flex flex-col items-center cursor-pointer group"> 
-            <a href="{{ route('Histori') }}"> 
-                <input type="radio" name="nav" class="sr-only peer" {{ request()->routeIs('Histori') ? 'checked' : '' }}>  
-                <div class="flex items-center justify-center w-[60px] h-[60px] rounded-full bg-white mb-2 transition-all duration-300 hover:bg-black hover:text-white hover:ring-2 hover:ring-white peer-checked:bg-black peer-checked:text-white peer-checked:ring-2 peer-checked:ring-white">  
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-[30px] h-[30px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">  
-                        <path d="M12 8l0 4l2 2"></path>  
-                        <path d="M3.05 11a9 9 0 1 1 .5 4m-.5 5v-5h5"></path>  
-                    </svg>  
-                </div>  
-            </a> 
-            <span class="absolute left-[70px] ml-2 top-1/2 -translate-y-1/2 translate-x-2 bg-gray-800 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">History</span>  
-        </label>  
+ 
     </div>  
 
     <!-- Bottom Section -->  
